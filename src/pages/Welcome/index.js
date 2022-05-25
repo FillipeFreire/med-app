@@ -10,12 +10,13 @@ import * as Animatable from 'react-native-animatable';
 import { useNavigation } from '@react-navigation/native';
 
 import InfoCarousel from '../../components/InfoCarousel';
+import { globalStyles } from '../../assets/styles';
 
 export default function Welcome() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.containerBlue}>
       <View style={styles.containerLogo}>
         <Animatable.Image 
           animation='fadeInUp'
@@ -27,7 +28,7 @@ export default function Welcome() {
 
       <Animatable.View 
         delay={2000}
-        animation='fadeInUp' 
+        animation='fadeInUp'
         style={styles.containerForm}
       >
         <View style={{ height: 200 }}>
@@ -37,15 +38,15 @@ export default function Welcome() {
         <View style={styles.containerButton}>
           <TouchableOpacity 
             onPress={() => navigation.navigate('Register')}
-            style={styles.buttonSecundary}
+            style={{ ...globalStyles.buttonSecundary, width: 160 }}
           >
-            <Text style={styles.buttonSecundary.buttonText}>Register</Text>
+            <Text style={globalStyles.buttonSecundary.buttonText}>Register</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             onPress={() => navigation.navigate('SignIn')}
-            style={styles.buttonPrimary}
+            style={{ ...globalStyles.buttonPrimary, width: 160 }}
           >
-            <Text style={styles.buttonPrimary.buttonText}>Login</Text>
+            <Text style={globalStyles.buttonPrimary.buttonText}>Login</Text>
           </TouchableOpacity>
         </View>
       </Animatable.View>
@@ -54,10 +55,6 @@ export default function Welcome() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#009BFF',
-  },
   containerLogo: {
     flex: 2,
     backgroundColor: '#009BFF',
@@ -83,35 +80,5 @@ const styles = StyleSheet.create({
     bottom: '10%',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  buttonPrimary: {
-    backgroundColor: '#009BFF',
-    borderRadius: 50,
-    paddingVertical: 8,
-    width: 160,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 2,
-    buttonText: {
-      fontSize: 18,
-      color: 'white',
-      fontWeight: 'bold'
-    },
-  },
-  buttonSecundary: {
-    borderColor: '#DEDEDE',
-    borderWidth: 1,
-    backgroundColor: 'white',
-    borderRadius: 50,
-    paddingVertical: 8,
-    width: 160,
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 2,
-    buttonText: {
-      fontSize: 18,
-      color: 'black',
-      fontWeight: 'bold'
-    },
   },
 });

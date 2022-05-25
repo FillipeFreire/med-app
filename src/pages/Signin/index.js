@@ -5,71 +5,62 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 
+import { globalStyles } from '../../assets/styles';
+
 export default function Signin() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <Appbar.Header>
+    <Animatable.View
+      style={globalStyles.containerLight}
+      animation='fadeInLeft'
+    >
+      <StatusBar
+        backgroundColor='white' 
+        barStyle='dark-content'
+      />
+      <Appbar.Header style={globalStyles.containerHeader}>
         <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="Title" subtitle="Subtitle" />
+        <Appbar.Content title="Login" />
       </Appbar.Header>
-      <Animatable.View  
-        animation='fadeInLeft' 
-        delay={500}
-        style={styles.containerHeader}
-      >
-        <Text style={styles.message}>Bem vindo(a)</Text> 
-      </Animatable.View>
 
-      <Animatable.View 
+      <View 
         style={styles.containerForm}
-        animation={'fadeInUp'}
       >
         <Text style={styles.title}>Email</Text>
         <TextInput
           keyboardType='email-address'
           placeholder='Digite um email'
-          style={styles.input}
+          style={globalStyles.input}
         />
 
         <Text style={styles.title}>Senha</Text>
         <TextInput
           keyboardType='visible-password'
           placeholder='Digite um email'
-          style={styles.input}
+          style={globalStyles.input}
         />
 
         <View style={styles.containerButton}>
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Enter</Text>
+          <TouchableOpacity style={globalStyles.buttonSecundary}>
+            <Text style={globalStyles.buttonSecundary.buttonText}>Cancel</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={globalStyles.buttonPrimary}>
+            <Text style={globalStyles.buttonPrimary.buttonText}>Enter</Text>
           </TouchableOpacity>
         </View>
-      </Animatable.View>
-    </View>
+      </View>
+    </Animatable.View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#009BFF'
-  },
-  containerHeader: {
-    alignItems: 'center',
-    marginTop: '5%',
-    marginBottom: '5%',
-  },
-  message: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'white',
-  },
   containerForm: {
     flex: 1,
     backgroundColor: 'white',
@@ -82,28 +73,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   title: {
-    fontSize: 18,
+    fontSize: 16,
     marginTop: 28,
   },
-  input: {
-    borderBottomWidth: 1,
-    height: 40,
-    marginBottom: 12,
-    fontSize: 16,
-  },
-  button: {
-    backgroundColor: '#009BFF',
-    borderRadius: 50,
-    paddingVertical: 8,
-    width: '100%',
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-  },
-
 });
